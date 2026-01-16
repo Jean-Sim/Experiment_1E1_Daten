@@ -22,19 +22,15 @@ I_mean_sys_fehler = [0.00169581 0.0018861  0.0021089  0.00231029 0.0024941  0.00
 I_fehler_gesamt = [0.00169582 0.00188617 0.00210929 0.00231031 0.00249429 0.0026926
  0.00291044 0.00311367 0.00332895 0.00353062]
 
-odr ist fehlgeschalgen vermutlich weil die statistichen Fehler wesentlich kleiner als die systematichen sinm was in der volgenden fit güte geändet hat.
-Fit parameters:
-a = 98.93935 ± 0.14142
-b = 0.03110 ± 0.01094
-Goodness of fit:
-Chi^2 = 792.546
-Degrees of freedom = 8
-Chi^2 / dof = 99.068
+odr hat einen sehr kleine chi^2 ddof wenn wir sysfehler einbeziehen da wir davon augehen das diese uncireliert sind das ist aczeptable das dies impliziert das das unssere schätzung konservativ ist was in anbetrachtung der hersteller angbaben vernünftig ist 
 
-das normale least squared hat gut funktioniert weisst aber im Residdoum eine Klares musster vermutlich durch thermiche effekte auf  
-Gefittete Steigung R = 99.03188 ± 0.00119 V/A
-Gefitteter Offset U0 = 0.02385 ± 0.00007 V
+Fit parameters:
+a = 99.22247 ± 0.10378
+b = 0.01432 ± 0.00447
 Goodness of fit:
-Chi^2 = 8.000
+Chi^2 = 0.024
 Degrees of freedom = 8
-Chi^2 / dof = 1.000
+Chi^2 / dof = 0.003
+
+im Residdoum eine Klares musster vermutlich durch thermiche effekte auf  
+
