@@ -22,6 +22,9 @@ I_mean_sys_fehler = [0.00169581 0.0018861  0.0021089  0.00231029 0.0024941  0.00
 I_fehler_gesamt = [0.00169582 0.00188617 0.00210929 0.00231031 0.00249429 0.0026926
  0.00291044 0.00311367 0.00332895 0.00353062]
 
+Histogram weisst klare digitalisierungs effekte auf ich nehem messung 4 und U 
+
+
 odr hat einen sehr kleine chi^2 ddof wenn wir sysfehler einbeziehen da wir davon augehen das diese uncireliert sind das ist aczeptable das dies impliziert das das unssere schätzung konservativ ist was in anbetrachtung der hersteller angbaben vernünftig ist 
 
 Fit parameters:
@@ -33,7 +36,6 @@ Degrees of freedom = 8
 Chi^2 / dof = 0.003
 
 im Residdoum eine Klares musster vermutlich durch thermiche effekte auf  
-
 
 anpassungs variation
 U_up
@@ -56,4 +58,6 @@ Gefittete Steigung R = 100.38186 ± 0.10498 Ω
 Gefitteter Offset U0 = 0.04329 ± 0.00444 V
 Chi^2 = 0.023, dof = 8, Chi^2/dof = 0.003
 
-
+sigma_R_sys_U = 0.5730
+sigma_R_sys_I = 1.14615
+sigma_R_sys_g = sqrt(sigma_R_sys_U**2 + sigma_R_sys_I**2) = 1.28140
