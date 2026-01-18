@@ -1,7 +1,7 @@
 ANpassung auf Aufladungskurve U0 * (1 - np.exp(-t / tau)) + c
 
 Abschätzung stat fehler durch betrachtung der eltzten 50 Punkte. Wir gehen davon aus das die letzten 50 punkte gesätigt sind . inrealität sind sie es wahrscheinlich nicht was zu einer überschätzung des fehlers führt und dewegen zu diesen geringen chi^2 / ddof 
-
+wir verwenden bei dieser anpassung sigma_sys und sigma_stat im fit da wir bei diesen ausgehen können das diese unkoreliert sind. später beim log fit können wir das nicht und sigma sys wird weggelassen 
 Messung 1
   U0  = 9.596391304585328 ± 0.011549489384180949 V
   τ   = 1.0097369346878362 ± 0.0034953918814808094 ms
