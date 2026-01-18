@@ -189,7 +189,7 @@ Messung 8
   ndof    = 999
   χ²/ndof = 0.16877262363140605
 -------------------------------------------------------------------------------------
-Linearisierter anpassung strom
+Linearisierter anpassung strom bei der linear anpassung nur stat fehler da dieser mit sys koreliert ist da sigma_log_stat = sigma_stat/(U-c) und sigma_log_sys = sigma_sys/(U-c)
 
 Messung 1
   Steigung m = -0.9468582875713828 ± 2.0233972447025554e-05
