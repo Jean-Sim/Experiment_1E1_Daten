@@ -1,0 +1,182 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,siunitx,graphicx,physics}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{font=small}
+\begin{document}
+
+\section{Bestimmung des Widerstandes}
+
+Um den im Experiment verwendeten Widerstand zu bestimmen, wurde dieser in einen Stromkreis eingebaut. Für zehn verschiedene angelegte Spannungen wurden sowohl der Strom als auch der Spannungsabfall über dem Widerstand gemessen. Der Stromkreis wurde entsprechend Abbildung~\ref{fig:schaltbild} auf einem Rastersteckbrett aufgebaut, und die Messdaten wurden mit einem CASSY Lab~2 aufgezeichnet.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.7]{Schaltbild_1.png}
+    \caption{Schaltbild}
+    \label{fig:schaltbild}
+\end{figure}
+
+Das CASSY Lab~2 zeichnete für jede Spannungs- und Strommessung über einen Zeitraum von $100\,\mathrm{ms}$ alle $5\,\mathrm{ms}$ einen Datenpunkt auf. Insgesamt wurden somit pro Messung $N=100$ Spannungs- und Stromwerte in Messbereichen von $\pm 10\,\mathrm{V}$ beziehungsweise $\pm 0.1\,\mathrm{A}$ erfasst. Aus diesen 100 Werten wurden für jede Messung der Mittelwert sowie die zugehörige Standardabweichung berechnet, um eine Abschätzung des statistischen Fehlers zu erhalten.
+
+Die Mittelwerte ergeben sich zu
+\begin{align}
+\overline{U}_i &= \frac{1}{N}\sum_{n=1}^{N} U_{i,n}, \\
+\overline{I}_i &= \frac{1}{N}\sum_{n=1}^{N} I_{i,n},
+\end{align}
+wobei die Standardabweichungen durch
+\begin{align}
+\sigma_{U_i} &= \sqrt{\frac{1}{N-1}\sum_{n=1}^{N}\left(U_{i,n}-\overline{U}_i\right)^2}, \\
+\sigma_{I_i} &= \sqrt{\frac{1}{N-1}\sum_{n=1}^{N}\left(I_{i,n}-\overline{I}_i\right)^2}
+\end{align}
+gegeben sind. Daraus ergeben sich die statistischen Unsicherheiten der Mittelwerte zu
+\begin{align}
+\sigma_{\overline{U}_i,\mathrm{stat}} &= \frac{\sigma_{U_i}}{\sqrt{N}}, \\
+\sigma_{\overline{I}_i,\mathrm{stat}} &= \frac{\sigma_{I_i}}{\sqrt{N}}.
+\end{align}
+
+Zusätzlich wurden systematische Fehlerbeiträge gemäß den Herstellerangaben des CASSY Lab~2 und den gewählten Messbereichen berücksichtigt. Obwohl dies unüblich ist, wurden die systematischen Unsicherheiten in die Anpassung einbezogen, da angenommen wird, dass sie unkorreliert mit den statistischen Fehlern sind (siehe \texttt{widerstand\_fit.py}).
+
+Für die Spannung ergibt sich für jeden Messpunkt
+\begin{align}
+\sigma_{U_{i,n},\mathrm{sys}} &= 0.01\,U_{i,n} + 10 \cdot 0.005,
+\end{align}
+und für den gemittelten systematischen Fehler
+\begin{align}
+\sigma_{\overline{U}_i,\mathrm{sys}} &= \frac{1}{N}\sum_{n=1}^{N}\left(0.01\,U_{i,n} + 10 \cdot 0.005\right).
+\end{align}
+
+Analog ergibt sich für den Strom
+\begin{align}
+\sigma_{I_{i,n},\mathrm{sys}} &= 0.02\,I_{i,n} + 0.1 \cdot 0.005, \\
+\sigma_{\overline{I}_i,\mathrm{sys}} &= \frac{1}{N}\sum_{n=1}^{N}\left(0.02\,I_{i,n} + 0.1 \cdot 0.005\right).
+\end{align}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|ccccc}
+\hline
+$i$ & $\bar{U}$ & $\sigma_{U,\text{stat}}$ & $\sigma_{\bar{U},\text{stat}}$ & $\sigma_{\bar{U},\text{sys}}$ & $\sigma_{\bar{U}}$ \\
+\hline
+1  & 0.980  & 0 & 0 & 0.0598 & 0.0598 \\
+2  & 1.930  & 0.0070 & 0.0015 & 0.069 & 0.069 \\
+3  & 3.039  & 0.016 & 0.0035 & 0.080 & 0.080 \\
+4  & 4.0424  & 0.00252 & 0.00054 & 0.090 & 0.090 \\
+5  & 4.955  & 0.014 & 0.003 & 0.010 & 0.010 \\
+6  & 5.94  & 0.015 & 0.0032 & 0.11 & 0.11 \\
+7  & 7.02 & 0.0024 & 0.00051 & 0.12 & 0.12 \\
+8  & 8.02  & 0.0011 & 0.00023 & 0.13 & 0.13 \\
+9  & 9.07  & 0.014 & 0.0030 & 0.14 & 0.14 \\
+10 & 10.06 & 0.0025 & 0.00054 & 0.15 & 0.15 \\
+\hline
+\end{tabular}
+\caption{Mittelwerte der Spannung und zugehörige statistische und systematische Unsicherheiten}
+    \caption{Ergebnisse U}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|ccccc}
+\hline
+$i$ & $\bar{I}$ & $\sigma_{I,\text{stat}}$ & $\sigma_{\bar{I},\text{stat}}$ & $\sigma_{\bar{I},\text{sys}}$ & $\sigma_{\bar{I}}$ \\
+\hline
+1  & 0.009790 & 0.000025 & 0.0000054 & 0.0017 & 0.0017 \\
+2  & 0.019305 & 0.000075 & 0.000016  & 0.0019 & 0.0019 \\
+3  & 0.030445 & 0.00018  & 0.000040  & 0.0021 & 0.0021 \\
+4  & 0.040514 & 0.000044 & 0.0000096 & 0.0023 & 0.0023 \\
+5  & 0.049705 & 0.00014  & 0.000031  & 0.0025 & 0.0025 \\
+6  & 0.059621 & 0.00014  & 0.000030  & 0.0027 & 0.0027 \\
+7  & 0.070521 & 0.000029 & 0.0000064 & 0.0029 & 0.0029 \\
+8  & 0.080683 & 0.000024 & 0.0000051 & 0.0031 & 0.0031 \\
+9  & 0.091440 & 0.00014  & 0.000030  & 0.0033 & 0.0033 \\
+10 & 0.101531 & 0.000024 & 0.0000053 & 0.0035 & 0.0035 \\
+\hline
+\end{tabular}
+    \caption{Ergebnisse I}
+\end{table}
+
+Exemplarisch ist in Abbildung~\ref{fig:histo} die tatsächliche Verteilung der Messwerte von Spannung und Strom für die vierte Messung dargestellt, zusammen mit der idealisierten abgeleiteten Wahrscheinlichkeitsverteilung. Es zeigen sich signifikante Digitalisierungseffekte sowie eine sehr geringe statistische Streuung, wie sie auch durch das Ergebnis der ersten Messung mit $\sigma_{U,1}=0$ nahegelegt wird. Daraus ist ersichtlich, dass die systematischen Unsicherheiten dominieren (siehe \texttt{histo\_widerstand.py}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{Histogram_U.png}
+    \includegraphics[scale=0.6]{Histogram_I.png}
+    \caption{Histogram der vierten Messreihe}
+    \label{fig:histo}
+\end{figure}
+
+Da bei der Anpassung sowohl für $U$ als auch für $I$ Unsicherheiten vorliegen, wurde eine lineare Orthogonal-Distanz-Regression der Form
+\begin{equation}
+f(x) = a x + b
+\end{equation}
+durchgeführt, wobei der Parameter $a$ den Widerstand repräsentiert. Das Ergebnis der Anpassung ist in Abbildung~\ref{fig:fit} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{wiederstand_fit.png}
+    \caption{Anpassung für den Widerstand, $f(x)=a x + b$, $a = 99.22 \pm 0.10\,\Omega$, $b = 0.01432 \pm 0.0045\,\Omega/\mathrm{A}$, $\chi^2 = 0.024$, $\chi^2/\mathrm{dof} = 0.003$, $\mathrm{dof}=8$}
+    \label{fig:fit}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{wiederstand_fit_res.png}
+    \caption{Richtungsresiduen}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{wiederstand_fit_res_zoom.png}
+    \caption{Richtungsresiduen vergrößert}
+\end{figure}
+
+Der sehr kleine Wert von $\chi^2/\mathrm{dof}$ deutet auf eine Überschätzung der Fehler hin, vermutlich verursacht durch die Einbeziehung der systematischen Unsicherheiten, die seitens der Hersteller häufig konservativ angegeben werden. Dies stellt im weiteren Verlauf jedoch kein wesentliches Problem dar. In den Richtungsresiduen ist jedoch ein deutlich parabelförmiges Muster erkennbar, was auf thermische Widerstandseffekte hindeutet. Diese sind vermutlich durch die Erwärmung des Widerstandes bei wiederholten Messungen entstanden. Da keine weitere Möglichkeit zur Korrektur dieser Effekte zur Verfügung steht und sie im Vergleich zu den geschätzten Unsicherheiten klein sind, wird die Auswertung unter Berücksichtigung dieser Einschränkung fortgeführt.
+
+Zur Abschätzung des systematischen Beitrags zur Unsicherheit des Widerstandes wurden vier weitere Anpassungen durchgeführt. Dabei wurden zunächst die Spannungswerte jeweils um die zuvor berechneten systematischen Unsicherheiten nach oben und unten verschoben und anschließend analog mit den Stromwerten verfahren, um neue Werte für den Widerstand zu erhalten (siehe \texttt{widerstand\_variation.py}).
+
+\begin{align}
+U_{i}^{\uparrow} &= U_i + \sigma_{\overline{U}_i,\mathrm{sys}}, \\
+U_{i}^{\downarrow} &= U_i - \sigma_{\overline{U}_i,\mathrm{sys}}, \\
+I_{i}^{\uparrow} &= I_i + \sigma_{\overline{I}_i,\mathrm{sys}}, \\
+I_{i}^{\downarrow} &= I_i - \sigma_{\overline{I}_i,\mathrm{sys}}.
+\end{align}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{wiederstand_fit_var.png}
+    \caption{Verschobene Fits: $R_{U}^{\uparrow}=99.80 \pm 0.10\,\Omega$, $R_{U}^{\downarrow}=98.65 \pm 0.10\,\Omega$, $R_{I}^{\uparrow}=98.09 \pm 0.10\,\Omega$, $R_{I}^{\downarrow}=100.38 \pm 0.10\,\Omega$}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|ccccc}
+\hline
+Messung & $R\;[\Omega]$ & $U_0\;[\mathrm{V}]$ & $\chi^2$ & dof & $\chi^2/\mathrm{dof}$ \\
+\hline
+U$_\text{up}$   & $99.80 \pm 0.10$ & $0.0433 \pm 0.0045$  & 0.024 & 8 & 0.003 \\
+U$_\text{down}$ & $98.65 \pm 0.10$ & $-0.0146 \pm 0.0045$ & 0.024 & 8 & 0.003 \\
+I$_\text{up}$   & $98.09 \pm 0.10$ & $-0.0140 \pm 0.0045$ & 0.024 & 8 & 0.003 \\
+I$_\text{down}$ & $100.38 \pm 0.10$ & $0.0433 \pm 0.0044$  & 0.023 & 8 & 0.003 \\
+\hline
+\end{tabular}
+    \caption{Güte und Ergebnisse der Fits}
+\end{table}
+
+Die systematischen Beiträge zur Unsicherheit des Widerstandes wurden anschließend wie folgt abgeschätzt:
+\begin{align}
+\Delta R_{\mathrm{sys},U} &= \frac{\left|R_{U}^{\uparrow} - R\right| + \left|R_{U}^{\downarrow} - R\right|}{2} = 0.57\,\Omega, \\
+\Delta R_{\mathrm{sys},I} &= \frac{\left|R_{I}^{\uparrow} - R\right| + \left|R_{I}^{\downarrow} - R\right|}{2} = 1.15\,\Omega.
+\end{align}
+
+Der gesamte systematische Fehler ergibt sich zu
+\begin{equation}
+\Delta R_{\mathrm{sys}} = \sqrt{\Delta R_{\mathrm{sys},U}^2 + \Delta R_{\mathrm{sys},I}^2} = 1.3\,\Omega.
+\end{equation}
+
+Damit dominiert der systematische Fehler, und das finale Ergebnis lautet
+\begin{equation}
+R = 99.22 \pm 0.10_{\mathrm{stat}} \pm 1.3_{\mathrm{sys}}\,\Omega.
+\end{equation}
+\end{document}

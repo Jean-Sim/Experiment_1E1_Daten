@@ -1,0 +1,684 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,siunitx,graphicx,physics}
+
+\usepackage{float}     
+\usepackage{placeins}   
+\usepackage{caption}
+\usepackage{subcaption}
+
+\captionsetup{font=small}
+
+% bessere Float-Verteilung
+\setcounter{topnumber}{5}
+\setcounter{bottomnumber}{5}
+\setcounter{totalnumber}{10}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.9}
+
+\begin{document}
+
+\section{Bestimmung der Kapazität}
+
+Zur Bestimmung der Kapazität des Kondensators wurde dieser zusammen mit dem zuvor charakterisierten Widerstand in Reihe in einen Stromkreis geschaltet. Anschließend wurden der Spannungsabfall über dem Kondensator sowie der Strom während des Auf- und Entladevorgangs gemessen. Insgesamt wurden vier Messungen für die Aufladung und vier Messungen für die Entladung des Kondensators durchgeführt. Jede Messung erstreckte sich über eine Dauer von $5\,\mathrm{ms}$ bei einer Abtastrate von $5\,\mathrm{\mu s}$. Der Messbereich der Spannung betrug $\pm 10\,\mathrm{V}$, während der Messbereich des Stroms auf $\pm 0.1\,\mathrm{A}$ eingestellt war. Die Trigger, welche die Messungen auslösten, wurden gemäß der folgenden Liste gewählt:
+\[
+[0.5\,\mathrm{V},\,0.5\,\mathrm{V},\,0.5\,\mathrm{V},\,0.5\,\mathrm{V},\,10.1\,\mathrm{V},\,5.1\,\mathrm{V},\,2.1\,\mathrm{V},\,8.1\,\mathrm{V}].
+\]
+Die verwendete Schaltung ist in Abbildung~\ref{fig:schaltbild} dargestellt.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{Schaltbild_2.png}
+\caption{Schaltbild}
+\label{fig:schaltbild}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Auflade_Spannung_plot.png}
+\caption{Aufladekurven Spannung}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Entlade_Spannung_plot.png}
+\caption{Entladekurven Spannung}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Auflade_Strom_plot.png}
+\caption{Aufladekurven Strom}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Entlade_Strom_plot.png}
+\caption{Entladekurven Strom}
+\end{figure}
+
+\FloatBarrier
+
+Zur Analyse der Messdaten wurden exponentielle Funktionen an die Spannungs- und Stromkurven angepasst. Für die Aufladung der Spannung wurde die Funktion
+\[
+f(t) = U_0 \left(1 - \mathrm{e}^{-t/\tau}\right) + c
+\]
+verwendet. Für die Entladung der Spannung sowie für die Stromkurven wurde jeweils die Form
+\[
+f(t) = U_0 \mathrm{e}^{-t/\tau} + c
+\quad \text{bzw.} \quad
+f(t) = I_0 \mathrm{e}^{-t/\tau}
+\]
+angesetzt.  
+
+Zur Abschätzung der statistischen Unsicherheit wurden die letzten 50 Messwerte jeder Messreihe als Rauschmessung interpretiert und deren Standardabweichung bestimmt. Diese Vorgehensweise dient der initialen Abschätzung von $\tau$ sowie der Bestimmung eines Offsets für spätere Analysen:
+\[
+\sigma_{\text{stat},U} = \operatorname{std}(U_{-50},\ldots,U_{-1}), \qquad
+\sigma_{\text{stat},I} = \operatorname{std}(I_{-50},\ldots,I_{-1}).
+\]
+
+Analog zur Bestimmung des Widerstands wurden die systematischen Unsicherheiten berechnet als
+\[
+\sigma_{\text{sys},U_i} = 0.01\,U_i + 10 \cdot 0.005,
+\]
+\[
+\sigma_{\text{sys},I_i} = 0.02\,I_i + 0.005.
+\]
+Die systematischen und statistischen Unsicherheiten werden als unkorreliert angenommen und gemeinsam in die Anpassung einbezogen. Für die Anpassung der oben genannten Funktionen an die Spannungs- und Stromdaten wurde erneut die Least-Squares-Methode verwendet.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Auflade_Spannung_fit_1.png}
+\caption{Auflade Anpassung Spannung 1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Auflade_Spannung_fit_2.png}
+\caption{Auflade Anpassung Spannung 2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Auflade_Spannug_fit_3.png}
+\caption{Auflade Anpassung Spannung 3}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Auflade_Spannung_fit_4.png}
+\caption{Auflade Anpassung Spannung 4}
+\end{figure}
+
+\FloatBarrier
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Entlade_Spannug_fit_1.png}
+\caption{Entlade Anpassung Spannung 1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Entlade_Spannung_fit_2.png}
+\caption{Entlade Anpassung Spannung 2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Entlade_Spannung_fit_3.png}
+\caption{Entlade Anpassung Spannung 3}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Entladung_Spannug_fit_4.png}
+\caption{Entlade Anpassung Spannung 4}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|ccc|cc}
+\hline
+Messung &
+$U_0\;[\mathrm{V}]$ &
+$\tau\;[\mathrm{ms}]$ &
+$c\;[\mathrm{V}]$ &
+$\chi^2/\mathrm{ndof}$ &
+ndof \\
+\hline
+Aufladung 1 &
+$9.596 \pm 0.012$ &
+$1.0097 \pm 0.0035$ &
+$0.508 \pm 0.011$ &
+0.00045 & 998 \\
+
+Aufladung 2 &
+$8.285 \pm 0.011$ &
+$1.0086 \pm 0.0038$ &
+$0.503 \pm 0.011$ &
+0.00048 & 998 \\
+
+Aufladung 3 &
+$1.2486 \pm 0.0082$ &
+$1.005 \pm 0.015$ &
+$0.5051 \pm 0.0087$ &
+0.00098 & 998 \\
+
+Aufladung 4 &
+$6.082 \pm 0.010$ &
+$1.0065 \pm 0.0045$ &
+$0.511 \pm 0.010$ &
+0.00044 & 998 \\
+\hline
+Entladung 1 &
+$9.929 \pm 0.017$ &
+$1.0166 \pm 0.0026$ &
+$0.0876 \pm 0.0038$ &
+0.0026 & 998 \\
+
+Entladung 2 &
+$4.871 \pm 0.012$ &
+$1.0140 \pm 0.0042$ &
+$0.0123 \pm 0.0034$ &
+0.0012 & 998 \\
+
+Entladung 3 &
+$1.9885 \pm 0.0090$ &
+$1.0146 \pm 0.0089$ &
+$0.0088 \pm 0.0033$ &
+0.0013 & 998 \\
+
+Entladung 4 &
+$7.956 \pm 0.015$ &
+$1.0200 \pm 0.0030$ &
+$0.0210 \pm 0.0036$ &
+0.0014 & 998 \\
+\hline
+\end{tabular}
+\caption{Anpassungs Werte Spannung}
+\end{table}
+
+\FloatBarrier
+
+Alle Anpassungen weisen ein sehr kleines Verhältnis $\chi^2/\mathrm{dof}$ auf. Gleichzeitig zeigen die Residuen parabelförmige Strukturen, was darauf hindeutet, dass die Unsicherheiten möglicherweise zu konservativ abgeschätzt wurden. Darüber hinaus liefern diese Strukturen Hinweise auf eine spannungsabhängige Kapazität und/oder vorhandene Leckströme. Die zusätzlich beobachteten streifenförmigen Muster lassen sich plausibel durch Digitalisierungseffekte erklären.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Auflade_Strom_fit_1.png}
+\caption{Auflade Anpassung Strom 1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Auflade_Strom_fit_2.png}
+\caption{Auflade Anpassung Strom 2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Auflade_Strom_fit_3.png}
+\caption{Auflade Anpassung Strom 3}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Auflade_Strom_fit_4.png}
+\caption{Auflade Anpassung Strom 4}
+\end{figure}
+
+\FloatBarrier
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Entlade_Strom_fit_1.png}
+\caption{Entlade Anpassung Strom 1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Entlade_Strom_fit_2.png}
+\caption{Entlade Anpassung Strom 2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Entlade_Strom_fit_3.png}
+\caption{Entlade Anpassung Strom 3}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Entlade_Strom_fit_4.png}
+\caption{Entlade Anpassung Strom 4}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|ccc|cc}
+\hline
+Messung 
+& $I_0\,[\mathrm{A}]$ 
+& $\tau\,[\mathrm{ms}]$ 
+& $c\,[\mathrm{A}]$ 
+& $\chi^2/\mathrm{ndof}$ 
+& ndof \\
+\hline
+Aufladung Strom 1 
+& $0.001847 \pm 0.000074$ 
+& $1.03 \pm 0.09$ 
+& $(5.03 \pm 3.21)\times 10^{-5}$ 
+& 0.00367 
+& 998 \\
+
+Aufladung Strom 2 
+& $0.001516 \pm 0.000073$ 
+& $1.03 \pm 0.11$ 
+& $(6.44 \pm 3.21)\times 10^{-5}$ 
+& 0.00405 
+& 998 \\
+
+Aufladung Strom 3 
+& $0.000247 \pm 0.000071$ 
+& $1.00 \pm 0.62$ 
+& $(6.61 \pm 3.11)\times 10^{-5}$ 
+& 0.00358 
+& 998 \\
+
+Aufladung Strom 4 
+& $0.001151 \pm 0.000073$ 
+& $1.00 \pm 0.14$ 
+& $(7.31 \pm 3.13)\times 10^{-5}$ 
+& 0.00364 
+& 998 \\
+\hline
+Entladung Strom 5 
+& $-0.005327 \pm 0.000060$ 
+& $1.014 \pm 0.027$ 
+& $(5.41 \pm 3.07)\times 10^{-5}$ 
+& 0.00412 
+& 998 \\
+
+Entladung Strom 6 
+& $-0.000942 \pm 0.000068$ 
+& $1.03 \pm 0.17$ 
+& $(6.20 \pm 3.17)\times 10^{-5}$ 
+& 0.00395 
+& 998 \\
+
+Entladung Strom 7 
+& $-0.000376 \pm 0.000068$ 
+& $1.08 \pm 0.45$ 
+& $(6.51 \pm 3.37)\times 10^{-5}$ 
+& 0.00400 
+& 998 \\
+
+Entladung Strom 8 
+& $-0.001465 \pm 0.000067$ 
+& $1.04 \pm 0.11$ 
+& $(6.13 \pm 3.20)\times 10^{-5}$ 
+& 0.00417 
+& 998 \\
+\hline
+\end{tabular}
+\caption{Anpassungs Werte Strom}
+\end{table}
+
+\FloatBarrier
+
+Auch für die Stromanpassungen ergibt sich ein sehr kleines $\chi^2/\mathrm{dof}$. Im Gegensatz zu den Spannungsanpassungen zeigen die Residuen hier jedoch keine parabelförmigen Muster. Die beobachteten abgerundeten, streifenförmigen Strukturen lassen sich erneut durch Digitalisierungseffekte erklären.
+
+Mithilfe der identifizierten Offsets wurden die Datensätze anschließend linearisiert. Für die Spannungen ergibt sich:
+\[
+U(t) = U_0\left(1-\mathrm{e}^{-t/\tau}\right)+c,
+\qquad
+U_{\text{lin}}(t) = \ln\left|U(t)-U_0-c\right|
+\]
+für die Aufladung und
+\[
+U(t) = U_0\mathrm{e}^{-t/\tau}+c,
+\qquad
+U_{\text{lin}}(t) = \ln\left|U(t)-c\right|
+\]
+für die Entladung.  
+
+Für den Strom gilt entsprechend:
+\[
+I(t) = \pm I_0\mathrm{e}^{-t/\tau}+c,
+\qquad
+I_{\text{lin}}(t) = \ln\left|I(t)-c\right|.
+\]
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{Lin_Spannug_plot.png}
+\caption{Linearisierte Spannung}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{Linear_Strom_plot.png}
+\caption{Linearisierter Strom}
+\end{figure}
+
+\FloatBarrier
+
+Die Unsicherheiten wurden gemäß der gaußschen Fehlerfortpflanzung transformiert:
+\[
+\sigma_{\text{stat},U_{\text{lin}},i} = \frac{\sigma_{\text{stat},U}}{U_i-c},
+\qquad
+\sigma_{\text{stat},I_{\text{lin}},i} = \frac{\sigma_{\text{stat},I}}{I_i-c}.
+\]
+Die systematischen Unsicherheiten wurden für die lineare Anpassung nicht berücksichtigt, da diese nach der Transformation mit den statistischen Unsicherheiten korreliert wären. Auch hier wurde die Least-Squares-Methode zur Anpassung einer Geraden an die linearisierten Daten verwendet.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Linear_Spannug_fit_1.png}
+\caption{Lineare Spannungs Anpassung 1}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Linear_Spannung_fit_2.png}
+\caption{Lineare Spannungs Anpassung 2}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Linear_Spannug_fit_3.png}
+\caption{Lineare Spannungs Anpassung 3}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Linear_Spannug_fit_4.png}
+\caption{Lineare Spannungs Anpassung 4}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Linear_Spanung_fit_5.png}
+\caption{Lineare Spannungs Anpassung 5}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Linear_Spannung_fit_6.png}
+\caption{Lineare Spannungs Anpassung 6}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Linear_Spannung_fit_7.png}
+\caption{Lineare Spannungs Anpassung 7}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Linear_Spannug_fit_8.png}
+\caption{Lineare Spannungs Anpassung 8}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|cc|cc}
+\hline
+Messung 
+& Steigung $m$ 
+& Achsenabschnitt $b$ 
+& $\chi^2/\mathrm{ndof}$ 
+& ndof \\
+\hline
+Messung 1 
+& $-0.99593 \pm 0.00002$ 
+& $2.27292 \pm 0.00007$ 
+& 265 
+& 999 \\
+
+Messung 2 
+& $-0.99549 \pm 0.00002$ 
+& $2.12394 \pm 0.00006$ 
+& 350 
+& 999 \\
+
+Messung 3 
+& $-1.00256 \pm 0.00004$ 
+& $0.24295 \pm 0.00014$ 
+& 2610 
+& 999 \\
+
+Messung 4 
+& $-0.99708 \pm 0.00002$ 
+& $1.81197 \pm 0.00006$ 
+& 681 
+& 999 \\
+
+Messung 5 
+& $-0.98405 \pm 0.00011$ 
+& $2.29581 \pm 0.00008$ 
+& 0.962 
+& 999 \\
+
+Messung 6 
+& $-0.98625 \pm 0.00014$ 
+& $1.58345 \pm 0.00010$ 
+& 0.332 
+& 999 \\
+
+Messung 7 
+& $-0.98531 \pm 0.00022$ 
+& $0.68735 \pm 0.00016$ 
+& 0.760 
+& 999 \\
+
+Messung 8 
+& $-0.98071 \pm 0.00014$ 
+& $2.07424 \pm 0.00010$ 
+& 0.169 
+& 999 \\
+\hline
+\end{tabular}
+\caption{Anpassungs Werte Lineare Spannung}
+\end{table}
+
+\FloatBarrier
+
+Es zeigt sich, dass ausschließlich die Anpassungen 5--8 ein akzeptables Verhältnis $\chi^2/\mathrm{dof}$ aufweisen. Die übrigen Anpassungen sind als unzuverlässig zu bewerten. In den Residuen ist eine mit der Zeit zunehmende Streuung erkennbar, was nach einer logarithmischen Transformation zu erwarten ist. Zusätzlich treten erneut lineare spektrale Muster auf, die auf Digitalisierungseffekte hindeuten. Insgesamt wird nur den Anpassungen 5--8 ausreichend Vertrauen entgegengebracht.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Linear_Strom_fit_1.png}
+\caption{Linearer Strom Anpassung 1}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.57]{Linear_Strom_fit_2.png}
+\caption{Linearer Strom Anpassung 2}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.57]{Linear_Strom_fit_3.png}
+\caption{Linearer Strom Anpassung 3}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Linear_Strom_fit_4.png}
+\caption{Linearer Strom Anpassung 4}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Linear_Strom_fit_5.png}
+\caption{Linearer Strom Anpassung 5}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Linear_Strom_fit_6.png}
+\caption{Linearer Strom Anpassung 6}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Linear_Strom_fit_7.png}
+\caption{Linearer Strom Anpassung 7}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.58]{Linear_Strom_fit_8.png}
+\caption{Linearer Strom Anpassung 8}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|cc|cc}
+\hline
+Messung 
+& Steigung $m$ 
+& Achsenabschnitt $b$ 
+& $\chi^2/\mathrm{ndof}$ 
+& ndof \\
+\hline
+Messung 1 
+& $-0.94686 \pm 0.00002$ 
+& $-6.39481 \pm 0.00007$ 
+& $4.88\times10^{5}$ 
+& 999 \\
+
+Messung 2 
+& $-0.92182 \pm 0.00002$ 
+& $-6.67004 \pm 0.00006$ 
+& $8.68\times10^{5}$ 
+& 999 \\
+
+Messung 3 
+& $-0.33375 \pm 0.00004$ 
+& $-9.57978 \pm 0.00014$ 
+& $2.53\times10^{5}$ 
+& 999 \\
+
+Messung 4 
+& $-0.88859 \pm 0.00002$ 
+& $-7.04488 \pm 0.00006$ 
+& $1.23\times10^{6}$ 
+& 999 \\
+
+Messung 5 
+& $-0.98811 \pm 0.00011$ 
+& $-5.23444 \pm 0.00008$ 
+& $128$ 
+& 999 \\
+
+Messung 6 
+& $-0.99332 \pm 0.00014$ 
+& $-6.96339 \pm 0.00010$ 
+& $1.98\times10^{3}$ 
+& 999 \\
+
+Messung 7 
+& $-0.96379 \pm 0.00022$ 
+& $-7.88284 \pm 0.00016$ 
+& $3.93\times10^{3}$ 
+& 999 \\
+
+Messung 8 
+& $-0.97952 \pm 0.00014$ 
+& $-6.52058 \pm 0.00010$ 
+& $1.19\times10^{3}$ 
+& 999 \\
+\hline
+\end{tabular}
+\caption{Anpassungs Werte Linearer Strom}
+\end{table}
+
+\FloatBarrier
+
+Für die linearen Stromanpassungen ergibt sich durchgehend ein sehr schlechtes Verhältnis $\chi^2/\mathrm{dof}$ sowie eine starke Streuung der Daten. Dies ist auf die zugrunde liegenden Datensätze nach der Linearisierung zurückzuführen. Zudem weichen die ermittelten Werte für $\tau$ deutlich von den zuvor bestimmten Ergebnissen ab. Entsprechend ist das Vertrauen in diese Anpassungen gering, weshalb sie nicht weiter verwendet werden.
+
+Zur weiteren Auswertung der Zeitkonstante $\tau$ werden die 16 Ergebnisse aus den direkten exponentiellen Anpassungen sowie die Ergebnisse 5--8 aus den linearisierten Anpassungen herangezogen.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c|c}
+\hline
+Kategorie & Messung & $\tau\,[\mathrm{ms}]$ \\
+\hline
+Aufladung Spannung (exp.) & 1 & $1.0097 \pm 0.0035$ \\
+ & 2 & $1.0086 \pm 0.0038$ \\
+ & 3 & $1.0086 \pm 0.0038$ \\
+ & 4 & $1.0065 \pm 0.0045$ \\
+\hline
+Entladung Spannung (exp.) & 1 & $1.0166 \pm 0.0026$ \\
+ & 2 & $1.0140 \pm 0.0042$ \\
+ & 3 & $1.0146 \pm 0.0089$ \\
+ & 4 & $1.0200 \pm 0.0030$ \\
+\hline
+Aufladung Strom (exp.) & 1 & $1.03 \pm 0.09$ \\
+ & 2 & $1.03 \pm 0.11$ \\
+ & 3 & $1.00 \pm 0.62$ \\
+ & 4 & $1.00 \pm 0.14$ \\
+\hline
+Entladung Strom (exp.) & 1 & $1.014 \pm 0.027$ \\
+ & 2 & $1.03 \pm 0.17$ \\
+ & 3 & $1.08 \pm 0.45$ \\
+ & 4 & $1.04 \pm 0.11$ \\
+\hline
+Linearisierte Fits & 1 & $0.98405 \pm 0.00011$ \\
+ & 2 & $0.98625 \pm 0.00014$ \\
+ & 3 & $0.98531 \pm 0.00022$ \\
+ & 4 & $0.98071 \pm 0.00014$ \\
+\hline
+\end{tabular}
+\caption{Verschiedene Ergebnisse für $\tau$}
+\end{table}
+
+Für die aus den exponentiellen Anpassungen gewonnenen Werte von $\tau$ wird unter Ausschluss der Werte 5--8 ein gewichtetes Mittel gebildet, da deren zugrunde liegende Datensätze bei genauerer Betrachtung Ausreißer aufweisen. Die durch Linearisierung gewonnenen $\tau$-Werte werden separat analysiert, wobei der letzte Wert ausgeschlossen wird, da er stark von den übrigen abweicht.
+
+Für die exponentiellen Anpassungen ergibt sich:
+\[
+\bar{\tau}_1 = \frac{\sum_i \tau_i/\sigma_i^2}{\sum_i 1/\sigma_i^2} = 0.0010085\,\mathrm{s},
+\]
+\[
+\sigma_{\bar{\tau}_1} = \sqrt{\frac{1}{\sum_i 1/\sigma_i^2}} = 0.0000022\,\mathrm{s}.
+\]
+
+Für die linearisierten Anpassungen folgt:
+\[
+\bar{\tau}_2 = \frac{\sum_i \tau_i/\sigma_i^2}{\sum_i 1/\sigma_i^2} = 0.0009851\,\mathrm{s},
+\]
+\[
+\sigma_{\bar{\tau}_2} = \sqrt{\frac{1}{\sum_i 1/\sigma_i^2}} = 0.0000008\,\mathrm{s}.
+\]
+
+Der Wert $\bar{\tau}_1$ wird als deutlich vertrauenswürdiger eingeschätzt, da dessen Unsicherheit realistischer erscheint und er aus insgesamt zuverlässigeren Messreihen stammt.
+
+Für das finale Ergebnis gilt:
+\[
+\tau = R C, \qquad C = \frac{\tau}{R}.
+\]
+Die Unsicherheit des Widerstands beträgt:
+\[
+\sigma_R = \sqrt{0.1^2 + 1.3^2} = 1.30\,\Omega.
+\]
+Die Unsicherheit der Kapazität ergibt sich zu:
+\[
+\left(\frac{\sigma_C}{C}\right)^2 = \left(\frac{\sigma_\tau}{\tau}\right)^2 + \left(\frac{\sigma_R}{R}\right)^2,
+\qquad
+\sigma_C = C \sqrt{\left(\frac{\sigma_\tau}{\tau}\right)^2 + \left(\frac{\sigma_R}{R}\right)^2}.
+\]
+
+Damit folgen:
+\[
+C_1 = \frac{\tau_1}{R} = (0.00001016 \pm 0.00000013)\,\mathrm{F},
+\]
+\[
+C_2 = \frac{\tau_2}{R} = (0.00000993 \pm 0.00000013)\,\mathrm{F}.
+\]
+
+Der Unterschied der beiden Werte ergibt:
+\[
+\frac{C_1 - C_2}{\sigma_C} = 1.7.
+\]
+Der Vergleich mit dem Nennwert $C = 0.00001\,\mathrm{F}$ liefert:
+\[
+\frac{0.00001 - C_1}{\sigma_C} = 1.23,
+\qquad
+\frac{0.00001 - C_2}{\sigma_C} = 0.54.
+\]
+
+Der Fehler des Widerstands dominiert eindeutig die Unsicherheit der Kapazität. Aufgrund der zuvor diskutierten Güte der Messungen und Anpassungen wird $C_1$ als der realistischere Wert eingeschätzt. Dennoch stimmen beide Ergebnisse sowohl untereinander als auch sehr gut mit den Herstellerangaben überein.
+
+\end{document}
+
